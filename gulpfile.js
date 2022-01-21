@@ -17,7 +17,9 @@ const path = {
     }
 };
 
-function syncBrowser() {
+function hotReload() {
+    gulp.watch(path.HTML, {}, gulp.series(devHTML,devCSS));
+    gulp.watch(path.CSS, {}, devCSS);
     browserSync.watch(path.Build.Base).on("change", browserSync.reload);
     return browserSync.init({
         server: {
@@ -47,5 +49,5 @@ exports.default = gulp.series(
     devClear,
     devHTML,
     devCSS,
-    syncBrowser
+    hotReload
 );
