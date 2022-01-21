@@ -1,40 +1,51 @@
 const del = require('del');
-const { src, dest, series } = require('gulp');
+const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const concat = require('gulp-concat');
 const tailwind = require('tailwindcss');
-
+const browserSync = require('browser-sync').create();
 
 const path = {
+    Base: 'src/',
     HTML: 'src/templates/*.html',
     CSS: 'src/styles/*.css',
     Build: {
         Base: 'build/',
-        HTML: 'build/pages/',
+        HTML: 'build/',
         CSS: 'build/'
     }
 };
 
+function syncBrowser() {
+    browserSync.watch(path.Build.Base).on("change", browserSync.reload);
+    return browserSync.init({
+        server: {
+            baseDir: path.Build.HTML
+        }
+    });
+}
+
 function devCSS() {
-    return src(path.CSS)
+    return gulp.src(path.CSS)
         .pipe(postcss([
             tailwind('./tailwind.config.js'),
             autoprefixer]))
         .pipe(concat({ path: 'style.css' }))
-        .pipe(dest(path.Build.CSS));
+        .pipe(gulp.dest(path.Build.CSS));
 }
 
 function devHTML() {
-    return src(path.HTML).pipe(dest(path.Build.HTML));
+    return gulp.src(path.HTML).pipe(gulp.dest(path.Build.HTML));
 }
 
 function devClear() {
     return del(path.Build.Base);
 }
 
-exports.default = series(
+exports.default = gulp.series(
     devClear,
     devHTML,
-    devCSS
+    devCSS,
+    syncBrowser
 );
