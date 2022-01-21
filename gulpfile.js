@@ -10,22 +10,30 @@ const path = {
     Base: 'src/',
     HTML: 'src/templates/*.html',
     CSS: 'src/styles/*.css',
+    Images: 'src/images/*',
     Build: {
         Base: 'build/',
         HTML: 'build/',
-        CSS: 'build/'
+        CSS: 'build/',
+        Images: 'build/images'
     }
 };
 
 function hotReload() {
-    gulp.watch(path.HTML, {}, gulp.series(devHTML,devCSS));
+    gulp.watch(path.HTML, {}, gulp.series(devHTML, devCSS));
     gulp.watch(path.CSS, {}, devCSS);
+    gulp.watch(path.Images, {},devImages);
     browserSync.watch(path.Build.Base).on("change", browserSync.reload);
     return browserSync.init({
         server: {
             baseDir: path.Build.HTML
         }
     });
+}
+
+function devImages() {
+    return gulp.src(path.Images)
+        .pipe(gulp.dest(path.Build.Images));
 }
 
 function devCSS() {
@@ -49,5 +57,6 @@ exports.default = gulp.series(
     devClear,
     devHTML,
     devCSS,
+    devImages,
     hotReload
 );
