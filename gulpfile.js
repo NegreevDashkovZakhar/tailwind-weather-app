@@ -10,7 +10,7 @@ const path = {
     Base: 'src/',
     HTML: 'src/templates/*.html',
     CSS: 'src/styles/*.css',
-    Images: 'src/images/*',
+    Images: 'src/images/**',
     Build: {
         Base: 'build/',
         HTML: 'build/',
