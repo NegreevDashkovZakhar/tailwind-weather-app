@@ -4,6 +4,7 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const concat = require('gulp-concat');
 const tailwind = require('tailwindcss');
+const ghPages = require('gulp-gh-pages');
 const browserSync = require('browser-sync').create();
 
 const path = {
@@ -15,14 +16,15 @@ const path = {
         Base: 'build/',
         HTML: 'build/',
         CSS: 'build/styles',
-        Images: 'build/images'
+        Images: 'build/images',
+        Deploy: 'build/**'
     }
 };
 
 function hotReload() {
     gulp.watch(path.HTML, {}, gulp.series(devHTML, devCSS));
     gulp.watch(path.CSS, {}, devCSS);
-    gulp.watch(path.Images, {},devImages);
+    gulp.watch(path.Images, {}, devImages);
     browserSync.watch(path.Build.Base).on("change", browserSync.reload);
     return browserSync.init({
         server: {
@@ -53,10 +55,23 @@ function devClear() {
     return del(path.Build.Base);
 }
 
+function deploy() {
+    return gulp.src(path.Build.Deploy)
+        .pipe(ghPages());
+}
+
 exports.default = gulp.series(
     devClear,
     devHTML,
     devCSS,
     devImages,
     hotReload
+);
+
+exports.deploy = gulp.series(
+    devClear,
+    devHTML,
+    devCSS,
+    devImages,
+    deploy
 );
