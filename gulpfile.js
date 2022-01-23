@@ -14,7 +14,7 @@ const path = {
     Build: {
         Base: 'build/',
         HTML: 'build/',
-        CSS: 'build/',
+        CSS: 'build/styles',
         Images: 'build/images'
     }
 };
