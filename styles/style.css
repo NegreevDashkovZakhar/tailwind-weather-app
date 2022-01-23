@@ -461,6 +461,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: -moz-fit-content;
   width: fit-content;
 }
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+.border-blue-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(37 99 235 / var(--tw-border-opacity));
+}
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -474,6 +487,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-fixed {
   background-attachment: fixed;
 }
+.p-2 {
+  padding: 0.5rem;
+}
 .align-top {
   vertical-align: top;
 }
@@ -483,6 +499,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+.font-bold {
+  font-weight: 700;
 }
 .uppercase {
   text-transform: uppercase;
