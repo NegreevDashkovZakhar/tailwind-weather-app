@@ -65,7 +65,7 @@ function devClear() {
 function deploy() {
     return gulp.src(path.Build.Deploy)
         .pipe(ghPages({
-            'remoteUrl':'https://github.com/NegreevDashkovZakhar/tailwind-weather-app.git',
+            'remoteUrl':'git@github.com:NegreevDashkovZakhar/tailwind-weather-app.git',
             'origin':'origin',
             'branch':'gh-pages'
         }));
