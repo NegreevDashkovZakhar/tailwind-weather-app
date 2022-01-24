@@ -64,7 +64,10 @@ function devClear() {
 
 function deploy() {
     return gulp.src(path.Build.Deploy)
-        .pipe(ghPages());
+        .pipe(ghPages({
+            'remoteUrl':'git@github.com:NegreevDashkovZakhar/tailwind-weather-app.git',
+            'origin':'origin'
+        }));
 }
 
 exports.default = gulp.series(
