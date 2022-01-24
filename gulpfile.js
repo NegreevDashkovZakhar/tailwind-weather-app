@@ -11,11 +11,13 @@ const path = {
     Base: 'src/',
     HTML: 'src/templates/*.html',
     CSS: 'src/styles/*.css',
+    Javascript: 'src/scripts/*.js',
     Images: 'src/images/**',
     Build: {
         Base: 'build/',
         HTML: 'build/',
         CSS: 'build/styles',
+        Javascript: 'build/scripts',
         Images: 'build/images',
         Deploy: 'build/**'
     }
@@ -25,6 +27,7 @@ function hotReload() {
     gulp.watch(path.HTML, {}, gulp.series(devHTML, devCSS));
     gulp.watch(path.CSS, {}, devCSS);
     gulp.watch(path.Images, {}, devImages);
+    gulp.watch(path.Javascript,{},devJavascript);
     browserSync.watch(path.Build.Base).on("change", browserSync.reload);
     return browserSync.init({
         server: {
@@ -36,6 +39,10 @@ function hotReload() {
 function devImages() {
     return gulp.src(path.Images)
         .pipe(gulp.dest(path.Build.Images));
+}
+
+function devJavascript() {
+    return gulp.src(path.Javascript).pipe(gulp.dest(path.Build.Javascript));
 }
 
 function devCSS() {
@@ -64,6 +71,7 @@ exports.default = gulp.series(
     devClear,
     devHTML,
     devCSS,
+    devJavascript,
     devImages,
     hotReload
 );
@@ -72,6 +80,7 @@ exports.deploy = gulp.series(
     devClear,
     devHTML,
     devCSS,
+    devJavascript,
     devImages,
     deploy
 );
