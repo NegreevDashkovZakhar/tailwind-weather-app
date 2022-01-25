@@ -5,10 +5,12 @@ const imagePath = 'images/weather/';
 const weatherImagesMap = {
     'Rain': 'rainy.png',
     'Snow': 'snow.png',
+    'Drizzle': 'rainy.png',
+    'Thunderstorm': 'storm.png',
     'Clouds': 'cloudy.png',
     'Clear': 'sunny.png',
     'Sun': 'sunny.png',
-    'Default': 'sunny-cloudy.png'
+    'Default': 'fog.png'
 }
 
 
