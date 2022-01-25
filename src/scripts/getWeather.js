@@ -28,7 +28,7 @@ function getTodayWeather() {
     request.open('GET', `${apiAdress}/weather?q=${cityName}&lang=ru&units=metric&appid=${apiKey}`);
     request.onload = () => {
         let data = JSON.parse(request.response);
-        console.log('recieved data %j', data);
+        console.log('recieved data ', data);
         //Rounding temperature
         let currentTemperature = data.main.temp.toFixed(2);
         //Using innerHTML might be not safe though it is used to insert special symbol such as &deg;
