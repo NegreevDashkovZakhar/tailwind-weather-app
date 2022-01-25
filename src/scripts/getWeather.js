@@ -4,8 +4,9 @@ const apiAdress = 'https://api.openweathermap.org/data/2.5';
 const imagePath = 'images/weather/';
 const weatherImagesMap = {
     'Rain': 'rainy.png',
-    'Snow': 'rainy.png',
+    'Snow': 'snow.png',
     'Clouds': 'cloudy.png',
+    'Clear': 'sunny.png',
     'Sun': 'sunny.png',
     'Default': 'sunny-cloudy.png'
 }
