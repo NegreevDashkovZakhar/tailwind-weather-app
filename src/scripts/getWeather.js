@@ -12,14 +12,16 @@ const weatherImagesMap = {
 
 
 function getWeather() {
-    getTodayTemperature();
+    getTodayWeather();
 }
 
-function getTodayTemperature() {
+function getTodayWeather() {
     let temperatureElement = document.getElementById('today-temperature');
     let cityElement = document.getElementById('city-name');
     let descriptionElement = document.getElementById('weather-description');
     let imageElement = document.getElementById('weather-image');
+    let feelsLikeElement = document.getElementById('feels-like-temperature');
+    let windSpeedElement = document.getElementById('wind-speed');
     let cityName = cityElement.value;
     let request = new XMLHttpRequest();
     request.open('GET', `${apiAdress}/weather?q=${cityName}&lang=ru&units=metric&appid=${apiKey}`);
@@ -38,6 +40,8 @@ function getTodayTemperature() {
         } else {
             imageElement.src = imagePath+weatherImagesMap.Default;
         }
+        feelsLikeElement.textContent = `Ощушается как: ${data.main.feels_like}`;
+        windSpeedElement.textContent = `Скорость ветра: ${data.wind.speed}`;
     };
     request.send();
 }
