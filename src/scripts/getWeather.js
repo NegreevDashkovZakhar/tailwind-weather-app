@@ -13,6 +13,11 @@ const weatherImagesMap = {
     'Default': 'fog.png'
 }
 
+let todayDate = {
+    'day': new Date().getDate(),
+    'month': new Date().getMonth(),
+    'year': new Date().getFullYear()
+}
 let currentLocation = {
     'lat': 0,
     'lon': 0
@@ -65,9 +70,23 @@ async function getForecast() {
 }
 
 function setForecastWeather(data) {
+    let tommorowLabelElement = document.getElementById('tommorow-label');
     let tommorowTemperatureElement = document.getElementById('tommorow-temperature');
     let tommorowWindSpeedElement = document.getElementById('tommorow-descritpion');
-    tommorowTemperatureElement.textContent = `Температура: ${data.daily[0].temp.day} `;
+    tommorowLabelElement.textContent = `${getFromatedDate(todayDate.day+1,todayDate.month+1,todayDate.year)}`;
+    tommorowTemperatureElement.textContent = data.daily[0].temp.day;
     tommorowTemperatureElement.innerHTML = tommorowTemperatureElement.innerHTML + '&deg;C';
-    tommorowWindSpeedElement.textContent = `Погода: ${data.daily[0].weather[0].description}`;
+    tommorowWindSpeedElement.textContent = data.daily[0].weather[0].description;
+}
+
+function getFromatedDate(days,months,years) {
+    let daySpace = '';
+    let monthSpace = '';
+    if (days < 10) {
+        daySpace = '0';
+    }
+    if (months < 10) {
+        monthSpace = '0';
+    }
+    return `${daySpace}${days}.${monthSpace}${months}.${years}`;
 }
