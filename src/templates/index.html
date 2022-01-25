@@ -16,17 +16,21 @@
             <img class="w-36 md:w-52 lg:w-64 xl:w-80 inline-block" src="images/weather/sunny.png"
                 alt="current weather icon" id="weather-image">
             <div class="ml-4 md:ml-7 w-36 md:w-52 lg:w-64 xl:w-80 inline-block align-top">
-                <div class="rounded-xl border-2 border-blue-600 p-2 w-max block">
-                    <input type="text" onchange="getWeather()"
-                        class="w-32 md:w-48 lg:w-64 text-sm md:text-lg lg:text-2xl uppercase bg-inherit focus:outline-none"
+                <div class="rounded-xl border-2 border-blue-600 p-2 w-full block">
+                    <input type="text" onchange="getWeather()" size="15"
+                        class="w-full block text-sm md:text-lg lg:text-2xl uppercase bg-inherit focus:outline-none"
                         id="city-name" value="Omsk" />
                 </div>
-                <div class="rounded-xl border-2 border-blue-600 p-2 mt-4 lg:mt-7 w-fit block">
+                <div class="rounded-xl border-2 border-blue-600 p-2 mt-4 lg:mt-7 w-full block">
                     <p class="text-base md:text-lg lg:text-2xl uppercase font-bold border-b-2 border-blue-600"
                         id="today-temperature"></p>
                     <p class="text-base md:text-lg lg:text-2xl" id="weather-description"></p>
                 </div>
             </div>
+        </article>
+        <article class="w-full mt-2 pl-3 border-l-2 border-r-2 border-blue-600">
+            <p class="text-base md:text-lg lg:text-2xl" id="feels-like-temperature"></p>
+            <p class="text-base md:text-lg lg:text-2xl" id="wind-speed"></p>
         </article>
     </main>
 </body>
