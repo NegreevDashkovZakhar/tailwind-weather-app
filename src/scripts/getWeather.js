@@ -70,16 +70,25 @@ async function getForecast() {
 }
 
 function setForecastWeather(data) {
-    let tommorowLabelElement = document.getElementById('tommorow-label');
-    let tommorowTemperatureElement = document.getElementById('tommorow-temperature');
-    let tommorowWindSpeedElement = document.getElementById('tommorow-descritpion');
-    tommorowLabelElement.textContent = `${getFromatedDate(todayDate.day+1,todayDate.month+1,todayDate.year)}`;
-    tommorowTemperatureElement.textContent = data.daily[0].temp.day;
-    tommorowTemperatureElement.innerHTML = tommorowTemperatureElement.innerHTML + '&deg;C';
-    tommorowWindSpeedElement.textContent = data.daily[0].weather[0].description;
+    for (let i = 0; i < 7; i++) {
+        let forecastDate = new Date();
+        forecastDate.setDate(forecastDate.getDate() + i + 1);
+        let forecastDateFormatted = {
+            'day': forecastDate.getDate(),
+            'month': forecastDate.getMonth(),
+            'year': forecastDate.getFullYear()
+        }
+        let tommorowLabelElement = document.getElementById(`forecast-${i}-label`);
+        let tommorowTemperatureElement = document.getElementById(`forecast-${i}-temperature`);
+        let tommorowWindSpeedElement = document.getElementById(`forecast-${i}-descritpion`);
+        tommorowLabelElement.textContent = `${getFromatedDate(forecastDateFormatted.day, forecastDateFormatted.month + 1, forecastDateFormatted.year)}`;
+        tommorowTemperatureElement.textContent = Math.round(data.daily[i].temp.day);
+        tommorowTemperatureElement.innerHTML = tommorowTemperatureElement.innerHTML + '&deg;C';
+        tommorowWindSpeedElement.textContent = data.daily[i].weather[0].description;
+    }
 }
 
-function getFromatedDate(days,months,years) {
+function getFromatedDate(days, months, years) {
     let daySpace = '';
     let monthSpace = '';
     if (days < 10) {
@@ -89,4 +98,21 @@ function getFromatedDate(days,months,years) {
         monthSpace = '0';
     }
     return `${daySpace}${days}.${monthSpace}${months}.${years}`;
+}
+
+function forecastDay(number) {
+    let result = document.createElement('div');
+    result.className = 'rounded-xl border-2 border-blue-600 p-2 max-w-full block';
+    result.innerHTML = `<p class="text-xs md:text-base lg:text-xl inline-block w-fit mr-2 md:mr-6" id="forecast-${number}-label"></p>
+    <p class="text-xs md:text-base lg:text-xl inline-block min-w-max w-8 md:w-16 mr-2 md:mr-6" id="forecast-${number}-temperature"></p>
+    <p class="text-xs md:text-base lg:text-xl inline-block w-fit" id="forecast-${number}-descritpion"></p>`;
+    return result;
+}
+
+function addForecastHTML() {
+    let host = document.getElementById('forecast-holder');
+    for (let i = 0; i < 7; i++) {
+        host.appendChild(forecastDay(i));
+        console.log('Appending children');
+    }
 }

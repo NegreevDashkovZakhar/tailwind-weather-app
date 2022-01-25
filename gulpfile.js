@@ -73,18 +73,18 @@ function deploy() {
 
 exports.default = gulp.series(
     devClear,
+    devJavascript,
     devHTML,
     devCSS,
-    devJavascript,
     devImages,
     hotReload
 );
 
 exports.deploy = gulp.series(
     devClear,
+    devJavascript,
     devHTML,
     devCSS,
-    devJavascript,
     devImages,
     deploy
 );

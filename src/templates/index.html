@@ -10,7 +10,7 @@
     <title>Tailwind page</title>
 </head>
 
-<body onload="getWeather()" class="font-sans bg-fixed bg-gradient-to-br from-blue-500 to-blue-300">
+<body onload="getWeather(); addForecastHTML();" class="font-sans bg-fixed bg-gradient-to-br from-blue-500 to-blue-300">
     <main class="w-max ml-auto mr-auto mt-5 md:mt-8">
         <article class="w-max">
             <img class="w-36 md:w-52 lg:w-64 xl:w-80 inline-block" src="images/weather/sunny.png"
@@ -32,11 +32,7 @@
             <p class="text-base md:text-lg lg:text-2xl" id="feels-like-temperature"></p>
             <p class="text-base md:text-lg lg:text-2xl" id="wind-speed"></p>
         </article>
-        <article class="rounded-xl border-2 border-blue-600 p-2 mt-4 lg:mt-7 max-w-full block">
-            <p class="text-xs md:text-base lg:text-xl inline-block w-fit mr-2 md:mr-6" id="tommorow-label"></p>
-            <p class="text-xs md:text-base lg:text-xl inline-block w-fit mr-2 md:mr-6" id="tommorow-temperature"></p>
-            <p class="text-xs md:text-base lg:text-xl inline-block w-fit" id="tommorow-descritpion"></p>
-        </article>
+        <div class="mt-4 lg:mt-7 w-full" id="forecast-holder"></div>
     </main>
 </body>
 
