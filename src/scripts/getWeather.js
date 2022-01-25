@@ -41,7 +41,8 @@ function getTodayWeather() {
             imageElement.src = imagePath+weatherImagesMap.Default;
         }
         feelsLikeElement.textContent = `Ощушается как: ${data.main.feels_like}`;
-        windSpeedElement.textContent = `Скорость ветра: ${data.wind.speed}`;
+        feelsLikeElement.innerHTML = feelsLikeElement.innerHTML + '&deg;C';
+        windSpeedElement.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
     };
     request.send();
 }
