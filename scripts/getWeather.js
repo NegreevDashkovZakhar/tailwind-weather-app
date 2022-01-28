@@ -13,11 +13,6 @@ const weatherImagesMap = {
     'Default': 'fog.png'
 }
 
-let todayDate = {
-    'day': new Date().getDate(),
-    'month': new Date().getMonth(),
-    'year': new Date().getFullYear()
-}
 let currentLocation = {
     'lat': 0,
     'lon': 0
